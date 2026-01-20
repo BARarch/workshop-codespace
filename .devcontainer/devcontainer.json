@@ -1,19 +1,24 @@
-
 {
-    "name": "python-docker-codespace",
-    "image": "mcr.microsoft.com/devcontainers/python:3.12",
-    "features": {
-      "ghcr.io/devcontainers/features/docker-in-docker:2": {}
-    },
-    "customizations": {
-      "vscode": {
-        "extensions": [
-          "ms-python.python",
-          "ms-python.vscode-pylance",
-          "ms-azuretools.vscode-docker"
-        ]
-      }
-    },
-    "postCreateCommand": "python -m pip install --upgrade pip",
-    "remoteUser": "vscode"
-  }
+  "name": "python-docker-codespace",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "moby": false,
+      "version": "latest"
+    }
+  },
+  "containerEnv": {
+    "DOCKER_API_VERSION": "1.43"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+  "postCreateCommand": "python -m pip install --upgrade pip",
+  "remoteUser": "vscode"
+}
